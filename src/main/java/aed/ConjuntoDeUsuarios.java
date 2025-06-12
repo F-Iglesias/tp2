@@ -2,10 +2,10 @@ package aed;
 
 public class ConjuntoDeUsuarios {
     
-    Usuario maximoTenedor; // Dentro de todos los usuarios con saldo máximo, es el que tiene la menor id.
+    private Usuario maximoTenedor; // Dentro de todos los usuarios con saldo máximo, es el que tiene la menor id.
     
-    Conjunto<Usuario> usuarios;
-    int[] saldos; // array que contiene todos los saldos ordenados por id.
+    private Conjunto<Usuario> usuarios;
+    private int[] saldos; // array que contiene todos los saldos ordenados por id.
 
     
 
@@ -22,13 +22,13 @@ public class ConjuntoDeUsuarios {
         }
 
         // La lista Usuario(n_usuarios, 0), ..., Usuario(1, 0) está ordenada así que podemos construir usuarios en tiempo lineal
-        usuarios.construirDeListaOrdenada(array_usuarios); // O(P)
+        usuarios = new Conjunto<Usuario>(array_usuarios); // O(P)
 
         maximoTenedor = new Usuario(1, 0); // O(1)
 
     }
 
-    public void agregarSaldo(int id, int monto) // O(log P)
+    private void agregarSaldo(int id, int monto) // O(log P)
     {
         int saldoAnterior = saldos[id-1]; // O(1)
         int saldoNuevo = saldoAnterior - monto; // O(1)
@@ -59,8 +59,4 @@ public class ConjuntoDeUsuarios {
         return new Usuario(maximoTenedor); // Para evitar aliasing
     }
 
-    public int saldo(int id)
-    {
-        return saldos[id-1];
-    }
 }

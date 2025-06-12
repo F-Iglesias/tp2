@@ -24,15 +24,9 @@ public class Usuario implements Comparable<Usuario> {
          * De este modo, el usuario más grande será el máximo tenedor que deberá devolver la operación maximoTenedor.
          * Es fácil ver que esto define un orden total.
          */
-        if (saldo == otro.saldo && id == otro.id) {
-            return 0;
-        }
-        else if (saldo > otro.saldo || (saldo == otro.saldo && id < otro.id)) {
-            return 1;
-        }
-        else {
-            return -1;
-        }
+        if (saldo == otro.saldo && id == otro.id) { return 0; }
+        else if (saldo > otro.saldo || (saldo == otro.saldo && id < otro.id)) { return 1; }
+        return -1;
     }
 
     @Override

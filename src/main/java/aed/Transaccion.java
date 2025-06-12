@@ -28,15 +28,9 @@ public class Transaccion implements Comparable<Transaccion> {
     @Override
     public int compareTo(Transaccion otro) // O(1) 
     {
-        if (this.monto == otro.monto && this.id == otro.id) {
-            return 0;
-        }
-        else if (this.monto > otro.monto || (this.monto == otro.monto && this.id > otro.id)) {
-            return 1;
-        }
-        else {
-            return -1;
-        }
+        if (this.monto == otro.monto && this.id == otro.id) { return 0; }
+        else if (this.monto > otro.monto || (this.monto == otro.monto && this.id > otro.id)) { return 1; }
+        return -1;
     }
 
     @Override

@@ -2,11 +2,11 @@ package aed;
 
 public class Bloque {
     
-    ColaPrioridad<Transaccion> colaDeTransacciones;
-    Diccionario<Integer, Transaccion> transaccionesPorId;
+    private ColaPrioridad<Transaccion> colaDeTransacciones;
+    private Diccionario<Integer, Transaccion> transaccionesPorId;
 
-    int montoMedio;
-    int k; // Transacciones de no creación
+    private int montoMedio;
+    private int k; // Transacciones de no creación
 
     // Bloque vacío
     public Bloque() // O(1)
