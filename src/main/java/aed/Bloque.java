@@ -5,13 +5,13 @@ public class Bloque {
     private ColaPrioridad<Transaccion> colaDeTransacciones;
     private Diccionario<Integer, Transaccion> transaccionesPorId;
 
-    private int montoMedio;
+    private int sumaMontos;
     private int k; // Transacciones de no creación
 
     // Bloque vacío
     public Bloque() // O(1)
     {
-        colaDeTransacciones = new ColaPrioridad<>();
+        colaDeTransacciones = new ColaPrioridad<>(new Transaccion[0]);
         transaccionesPorId = new Diccionario<>();
     }
 
@@ -19,44 +19,45 @@ public class Bloque {
     // Dada una lista de transacciones, ordenadas por id, construye un bloque en tiempo lineal
     public Bloque(Transaccion[] ts) // O(n)
     {
-        Integer[] ids = new Integer[ts.length];
-        Transaccion[] copia1 = new Transaccion[ts.length];
-        Transaccion[] copia2 = new Transaccion[ts.length];
+        Tupla<Integer, Transaccion>[] array_tuplas = (Tupla<Integer, Transaccion>[]) new Tupla[ts.length];
+
+        Transaccion[] copia_ts = new Transaccion[ts.length];
+        
         
         k = 0;
-        montoMedio = 0;
+        sumaMontos = 0;
 
         for (int i = 0; i < ts.length; i++)
         {
             if (ts[i].id_comprador() != 0) { 
                 k += 1;
-                montoMedio+= ts[i].monto();
+                sumaMontos+= ts[i].monto();
             }
-            ids[i] = ts[i].id();
-            copia1[i] = new Transaccion(ts[i]);
-            copia2[i] = new Transaccion(ts[i]);
-        }
-
-        if (k > 0)
-        {
-            montoMedio = montoMedio/k;
+            array_tuplas[i] = new Tupla<>(ts[i].id(), new Transaccion(ts[i]));
+            copia_ts[i] = new Transaccion(ts[i]);
         }
 
 
-        transaccionesPorId = new Diccionario<>();
-        transaccionesPorId.construirDeClavesOrdenadasYValores(ids, copia1);
-        colaDeTransacciones = new ColaPrioridad<>(copia2);
+
+        transaccionesPorId = new Diccionario<>(array_tuplas);
+        colaDeTransacciones = new ColaPrioridad<>(copia_ts);
 
     }
 
     // Devuelve una lista con todas las transacciones ordenadas por id
     public Transaccion[] transacciones() // O(n)
     {
-        Transaccion[] valores = transaccionesPorId.valoresOrdenadosPorClave();
-        Transaccion[] transacciones = new Transaccion[valores.length];
-        for (int i = 0; i < valores.length; i++)
+        int n_tuplas = transaccionesPorId.cardinal();
+        Transaccion[] transacciones = new Transaccion[n_tuplas];
+        Tupla<Integer, Transaccion>[] array_tuplas = (Tupla<Integer, Transaccion>[]) new Tupla[n_tuplas];
+
+        transaccionesPorId.volcarTuplas(array_tuplas);
+
+
+
+        for (int i = 0; i < transacciones.length; i++)
         {
-            transacciones[i] = new Transaccion(valores[i]);
+            transacciones[i] = new Transaccion(array_tuplas[i].valor); // Para evitar aliasing
         }
         return transacciones;
     }
@@ -70,7 +71,8 @@ public class Bloque {
     // El monto medio de todas las transacciones sin contar las de creación. Si no hay transacciones de no creación vale 0.
     public int montoMedio() // O(1)
     {
-        return montoMedio;
+        if (k > 0) { return sumaMontos/k; }
+        return 0;
     }
 
     // Borra la transaccion máxima y devuelve su valor
@@ -79,8 +81,7 @@ public class Bloque {
         Transaccion maximaTransaccion = colaDeTransacciones.desencolar();
         
         if (maximaTransaccion.id_comprador() != 0){
-            montoMedio = (montoMedio*k - maximaTransaccion.monto());
-            if (k > 1) { montoMedio = montoMedio/(k-1); }
+            sumaMontos -= maximaTransaccion.monto();
             k = k-1;
         }
 

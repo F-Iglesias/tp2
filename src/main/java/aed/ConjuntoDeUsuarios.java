@@ -28,10 +28,10 @@ public class ConjuntoDeUsuarios {
 
     }
 
-    private void agregarSaldo(int id, int monto) // O(log P)
+    public void agregarSaldo(int id, int monto) // O(log P)
     {
         int saldoAnterior = saldos[id-1]; // O(1)
-        int saldoNuevo = saldoAnterior - monto; // O(1)
+        int saldoNuevo = saldoAnterior + monto; // O(1)
         saldos[id-1] = saldoNuevo; // O(1)
         usuarios.eliminar(new Usuario(id, saldoAnterior)); // O(1)
         usuarios.insertar(new Usuario(id, saldoNuevo)); // O(1)
@@ -59,4 +59,8 @@ public class ConjuntoDeUsuarios {
         return new Usuario(maximoTenedor); // Para evitar aliasing
     }
 
+
+    public int saldo(int id) {
+        return saldos[id-1];
+    }
 }
