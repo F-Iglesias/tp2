@@ -292,6 +292,28 @@ public class ConjuntoTests {
 
     }
 
+    @Test
+    void elementos() {
+        Conjunto<Integer> conjunto = new Conjunto<>();
+        conjunto.insertar(5);
+        conjunto.insertar(4);
+        conjunto.insertar(20);
+        conjunto.insertar(15);
+        conjunto.insertar(12);
+        conjunto.insertar(16);
+        conjunto.insertar(24);
+        conjunto.insertar(22);
+        conjunto.insertar(25);
+
+        Integer[] elems = new Integer[9];
+        conjunto.volcarElementos(elems);
+        Integer[] elems_esperados = {4, 5, 12, 15, 16, 20, 22, 24, 25};
+        for (int i = 0; i < elems.length; i++)
+        {
+            assertEquals(elems_esperados[i], elems[i]);
+        }
+    }
+
     /* 
     @Test
     void siguiente_inorder() {

@@ -208,6 +208,26 @@ public class Conjunto<T extends Comparable<T>> {
 
         }
 
+        // Vuelca todo el arbol dentro del rango inicio -
+        public int volcarElementos(T[] elems, int inicio)
+        {
+            int mitad = inicio;
+            int long_final = 0;
+            if (izq != null) {
+                int long_izq = izq.volcarElementos(elems, inicio);
+                mitad = inicio + long_izq;
+                long_final += long_izq;
+            }
+            elems[mitad] = valor;
+            long_final += 1;
+
+            if (der != null) {
+                int long_der = der.volcarElementos(elems, mitad+1);
+                long_final += long_der;
+            }
+
+            return long_final;
+        }
 
         public int altura()
         {
@@ -304,6 +324,13 @@ public class Conjunto<T extends Comparable<T>> {
         return raiz.maximo().valor;
     }
 
+    public void volcarElementos(T[] elems) // Devuelve una lista de todos los elementos ordenados
+    {
+        if (raiz != null) {
+            raiz.volcarElementos(elems, 0);
+        }
+
+    }
 
 
     /* 
@@ -318,7 +345,15 @@ public class Conjunto<T extends Comparable<T>> {
 
     public String toString()
     {
-        throw new UnsupportedOperationException("Implementar!");
+        T[] elems = (T[]) new Comparable[cardinal];
+        volcarElementos(elems);
+        String res = "{";
+        for (int i = 0; i < elems.length; i++) {
+            res += elems[i].toString();
+            if (i < elems.length-1) { res += ","; }
+        }
+        res += "}";
+        return res;
     }
 
     
