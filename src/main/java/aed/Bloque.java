@@ -5,14 +5,14 @@ public class Bloque {
     private ColaPrioridad<Transaccion> colaDeTransacciones;
     private Diccionario<Integer, Transaccion> transaccionesPorId;
 
-    private int sumaMontos;
-    private int k; // Transacciones de no creación
+    private int sumaMontos; // La suma de todos los montos de las transacciones de no creación.
+    private int k; // Cantidad de transacciones de no creación.
 
     // Bloque vacío
     public Bloque() // O(1)
     {
-        colaDeTransacciones = new ColaPrioridad<>(new Transaccion[0]);
-        transaccionesPorId = new Diccionario<>();
+        colaDeTransacciones = new ColaPrioridad<>(new Transaccion[0]); // Cola vacía
+        transaccionesPorId = new Diccionario<>(); // Diccionario vacío
     }
 
 
@@ -39,8 +39,8 @@ public class Bloque {
 
 
 
-        transaccionesPorId = new Diccionario<>(array_tuplas);
-        colaDeTransacciones = new ColaPrioridad<>(copia_ts);
+        transaccionesPorId = new Diccionario<>(array_tuplas); // O(n)
+        colaDeTransacciones = new ColaPrioridad<>(copia_ts); // O(n)
 
     }
 
@@ -78,7 +78,7 @@ public class Bloque {
     // Borra la transaccion máxima y devuelve su valor
     public Transaccion borrarTransaccionMaxima() // O(log n)
     {
-        Transaccion maximaTransaccion = colaDeTransacciones.desencolar();
+        Transaccion maximaTransaccion = colaDeTransacciones.desencolar(); //O(log n)
         
         if (maximaTransaccion.id_comprador() != 0){
             sumaMontos -= maximaTransaccion.monto();

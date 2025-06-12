@@ -13,10 +13,8 @@ public class Diccionario<K extends Comparable<K>, V> {
     }
 
     /* 
-     * Dada una lista ordenada de claves y una lista de valores del mismo tamaño n, arma un diccionario tal que
-     * Sus valores con vs[0], ..., vs[n-1] con respectivas claves ks[0], ..., ks[n-1]
+     * Recibe un array de tuplas, ordenadas por clave y construye el diccionario en tiempo lineal.
      */
-
     public Diccionario(Tupla<K, V>[] array_tuplas)
     {
         tuplas = new Conjunto<>(array_tuplas);   

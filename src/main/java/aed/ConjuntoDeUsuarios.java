@@ -4,7 +4,7 @@ public class ConjuntoDeUsuarios {
     
     private Usuario maximoTenedor; // Dentro de todos los usuarios con saldo máximo, es el que tiene la menor id.
     
-    private Conjunto<Usuario> usuarios;
+    private Conjunto<Usuario> usuarios;  
     private int[] saldos; // array que contiene todos los saldos ordenados por id.
 
     
@@ -30,12 +30,12 @@ public class ConjuntoDeUsuarios {
 
     public void agregarSaldo(int id, int monto) // O(log P)
     {
-        int saldoAnterior = saldos[id-1]; // O(1)
+        int saldoAnterior = saldos[id-1]; // O(1)  
         int saldoNuevo = saldoAnterior + monto; // O(1)
         saldos[id-1] = saldoNuevo; // O(1)
-        usuarios.eliminar(new Usuario(id, saldoAnterior)); // O(1)
-        usuarios.insertar(new Usuario(id, saldoNuevo)); // O(1)
-        maximoTenedor = usuarios.maximo(); // O(1)
+        usuarios.eliminar(new Usuario(id, saldoAnterior)); // O(log P)
+        usuarios.insertar(new Usuario(id, saldoNuevo)); // O(log P)
+        maximoTenedor = usuarios.maximo(); // O(log P)
     }
 
     // Le quita el monto de la transacción al comprador y se lo añade al vendedor
