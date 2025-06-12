@@ -2,31 +2,51 @@ package aed;
 
 public class Berretacoin {
 
+    ConjuntoDeUsuarios usuarios;
+    Bloque ultimoBloque;
+
     public Berretacoin(int n_usuarios){
-        throw new UnsupportedOperationException("Implementar!");
+        usuarios = new ConjuntoDeUsuarios(n_usuarios);
+        ultimoBloque = new Bloque();
     }
 
     public void agregarBloque(Transaccion[] transacciones){
-        throw new UnsupportedOperationException("Implementar!");
+        
+        // Tenemos n_b iteraciones de costo O(log P) así que evaluar este bucle tiene complejidad temporal O(n_b log P)
+        for (Transaccion t : transacciones)
+        {
+            usuarios.procesarTransaccion(t); // O(log P)
+        }
+
+        ultimoBloque = new Bloque(transacciones); // O(n_b)
+
+        // El costo total es O(n_b log P) + O(n_b) = O(n_b log P)
     }
 
-    public Transaccion txMayorValorUltimoBloque(){
-        throw new UnsupportedOperationException("Implementar!");
+    public Transaccion txMayorValorUltimoBloque() // O(1)
+    {
+        return ultimoBloque.maximaTransaccion(); // O(1)
     }
 
-    public Transaccion[] txUltimoBloque(){
-        throw new UnsupportedOperationException("Implementar!");
+    public Transaccion[] txUltimoBloque() // O(n_b)
+    {
+        return ultimoBloque.transacciones(); // O(n_b)
     }
 
-    public int maximoTenedor(){
-        throw new UnsupportedOperationException("Implementar!");
+    public int maximoTenedor() // O(1)
+    {
+        Usuario maximoTenedor = usuarios.maximoTenedor(); // O(1)
+        return maximoTenedor.id(); // O(1)
     }
 
-    public int montoMedioUltimoBloque(){
-        throw new UnsupportedOperationException("Implementar!");
+    public int montoMedioUltimoBloque() // O(1)
+    {
+        return ultimoBloque.montoMedio(); // O(1)
     }
 
-    public void hackearTx(){
-        throw new UnsupportedOperationException("Implementar!");
+    public void hackearTx() // O(log n_b + log P)
+    {
+        Transaccion t = ultimoBloque.borrarTransaccionMaxima(); // log n_b
+        usuarios.revertirTransaccion(t); // log P
     }
 }
