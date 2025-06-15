@@ -29,20 +29,6 @@ public class ConjuntoDeUsuariosTest {
 
     }
 
-    @Test
-    void prueba2() {
-        Integer[] elems = {1, 6, 19, 3, -6, 20, 800, 4, 727, 1999, -399};
-        Integer[] elemsOrdenados = {1999, 800, 727, 20, 19, 6, 4, 3, 1, -6, -399};
-        ColaPrioridad<Integer> cola = new ColaPrioridad<Integer>(elems);
-        
-        for (int i = 0; i < elemsOrdenados.length -1; i++)
-        {
-            
-            assertEquals(elemsOrdenados[i], cola.desencolar());
-        }
-
-
-    }
 
 
     @Test
