@@ -1,5 +1,7 @@
 package aed;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import org.junit.jupiter.api.Test;
 
 public class BloqueTests {
@@ -96,5 +98,25 @@ public class BloqueTests {
         Bloque bloque = new Bloque(new Transaccion[]{t1, t2});
         assertEquals(t2, bloque.borrarTransaccionMaxima());
         assertEquals(t1, bloque.maximaTransaccion());
+    }
+
+    @Test 
+    void borrarTransaccionMaximaLasDevuelveOrdenadas()
+    {
+        Transaccion[] ts = new Transaccion[10000];
+        for (int i = 0; i < ts.length; i++) {
+            ts[i] = new Transaccion(i*2 + i*3 - 5, 0, 0, 10000^2 - i^2);
+        }
+
+        Bloque bloque = new Bloque(ts);
+        for (int i = 0; i < ts.length; i++)
+        {
+            ts[i] = bloque.borrarTransaccionMaxima();
+        }
+        for (int i = 0; i < ts.length-1; i++)
+        {
+            assertTrue(ts[i].compareTo(ts[i+1]) >= 0);
+        } 
+
     }
 }
