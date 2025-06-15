@@ -1,7 +1,6 @@
 package aed;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-
 import org.junit.jupiter.api.Test;
 
 public class ConjuntoDeUsuariosTest {
@@ -26,9 +25,19 @@ public class ConjuntoDeUsuariosTest {
         assertEquals(usuarios.saldo(4), 10);
         assertEquals(usuarios.maximoTenedor(), new Usuario(3, 13));
 
-
     }
 
+    @Test
+    void prueba2() {
+        ConjuntoDeUsuarios usuarios = new ConjuntoDeUsuarios(3);
+        usuarios.agregarSaldo(2, 10);
+        Transaccion t1 = new Transaccion(1, 2, 3, 5);
+        Transaccion t2 = new Transaccion(2, 2, 3, 15);
+        Transaccion t3 = new Transaccion(3, 0, 3, 100);
 
+        assertEquals(true, usuarios.esTransaccionValida(t1));
+        assertEquals(false, usuarios.esTransaccionValida(t2));
+        assertEquals(true, usuarios.esTransaccionValida(t3));
+    }
     
 }
