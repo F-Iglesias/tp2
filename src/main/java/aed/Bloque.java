@@ -13,8 +13,14 @@ public class Bloque {
     {
         colaDeTransacciones = new ColaPrioridad<>(new Transaccion[0]); // Cola vacía
         transaccionesPorId = new Diccionario<>(); // Diccionario vacío
+        montos_nc = 0;
+        ts_nc = 0;
     }
 
+    public boolean estaVacio() // O(1) 
+    {
+        return colaDeTransacciones.estaVacia();
+    }
 
     // Dada una lista de transacciones, ordenadas por id, construye un bloque en tiempo lineal
     public Bloque(Transaccion[] ts) // O(n)
