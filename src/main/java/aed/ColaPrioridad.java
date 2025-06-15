@@ -18,7 +18,7 @@ public class ColaPrioridad<T extends Comparable<T>> {
         heap[j] = temp;
     }
 
-    public void heapificar(int i) // O(log n)
+    private void heapificar(int i) // O(log n)
     {
         int mayor = i; // O(1)
         int izq = hijoIzquierdo(i); // O(1)
@@ -73,8 +73,11 @@ public class ColaPrioridad<T extends Comparable<T>> {
     {
         if (cardinal == 0) { throw new IllegalStateException("Heap vacío!!!"); }
         T res = heap[0]; // O(1)
-        heap[0] = heap[(cardinal--) - 1]; // O(1). Reemplazamos el máximo elemento por el último y decrementamos cardinal
-        heapificar(0); // O(log n)
+        // O(1). Reemplazamos el máximo elemento por el último y decrementamos cardinal
+        cardinal -= 1;
+        heap[0] = heap[cardinal];
+        heapificar(0); // O(log n)  
+        
         return res; // O(1)
     }
 

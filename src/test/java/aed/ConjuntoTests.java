@@ -30,8 +30,11 @@ public class ConjuntoTests {
         Conjunto<Integer> conjunto = new Conjunto<Integer>();
 
         conjunto.insertar(43);
+        assertTrue(conjunto.estaBalanceado());
         conjunto.insertar(42);
+        assertTrue(conjunto.estaBalanceado());
         conjunto.insertar(41);
+        assertTrue(conjunto.estaBalanceado());
 
         assertTrue(conjunto.pertenece(43));
         assertTrue(conjunto.pertenece(42));
@@ -45,8 +48,11 @@ public class ConjuntoTests {
         Conjunto<Integer> conjunto = new Conjunto<Integer>();
 
         conjunto.insertar(43);
+        assertTrue(conjunto.estaBalanceado());
         conjunto.insertar(44);
+        assertTrue(conjunto.estaBalanceado());
         conjunto.insertar(45);
+        assertTrue(conjunto.estaBalanceado());
 
         assertTrue(conjunto.pertenece(43));
         assertTrue(conjunto.pertenece(44));
@@ -66,14 +72,20 @@ public class ConjuntoTests {
          */
 
         conjunto.insertar(2);
+        assertTrue(conjunto.estaBalanceado());
         conjunto.insertar(1);
+        assertTrue(conjunto.estaBalanceado());
         conjunto.insertar(5);
+        assertTrue(conjunto.estaBalanceado());
         conjunto.insertar(3);
+        assertTrue(conjunto.estaBalanceado());
         conjunto.insertar(7);
+        assertTrue(conjunto.estaBalanceado());
         conjunto.insertar(3);
+        assertTrue(conjunto.estaBalanceado());
 
         assertEquals(5, conjunto.cardinal());
-
+        
         assertTrue(conjunto.pertenece(2));
         assertTrue(conjunto.pertenece(1));
         assertTrue(conjunto.pertenece(5));
@@ -92,26 +104,31 @@ public class ConjuntoTests {
         assertTrue("Jujuy".compareTo("Chubut") > 0);
 
         conjunto.insertar("La Pampa");
+        assertTrue(conjunto.estaBalanceado());
         assertEquals(1, conjunto.cardinal());
         assertEquals("La Pampa", conjunto.minimo());
         assertEquals("La Pampa", conjunto.maximo());
 
         conjunto.insertar("Chubut");
+        assertTrue(conjunto.estaBalanceado());
         assertEquals(2, conjunto.cardinal());
         assertEquals("Chubut", conjunto.minimo());
         assertEquals("La Pampa", conjunto.maximo());
 
         conjunto.insertar("Formosa");
+        assertTrue(conjunto.estaBalanceado());
         assertEquals(3, conjunto.cardinal());
         assertEquals("Chubut", conjunto.minimo());
         assertEquals("La Pampa", conjunto.maximo());
 
         conjunto.insertar("Catamarca");
+        assertTrue(conjunto.estaBalanceado());
         assertEquals(4, conjunto.cardinal());
         assertEquals("Catamarca", conjunto.minimo());
         assertEquals("La Pampa", conjunto.maximo());
 
         conjunto.insertar("Jujuy");
+        assertTrue(conjunto.estaBalanceado());
         assertEquals(5, conjunto.cardinal());
         assertEquals("Catamarca", conjunto.minimo());
         assertEquals("La Pampa", conjunto.maximo());
@@ -126,9 +143,13 @@ public class ConjuntoTests {
         Conjunto<Integer> conjunto = new Conjunto<Integer>();
 
         conjunto.insertar(5);
+        assertTrue(conjunto.estaBalanceado());
         conjunto.insertar(6);
+        assertTrue(conjunto.estaBalanceado());
         conjunto.insertar(7);
+        assertTrue(conjunto.estaBalanceado());
         conjunto.eliminar(6);
+        assertTrue(conjunto.estaBalanceado());
 
         assertFalse(conjunto.pertenece(6));
         assertEquals(2, conjunto.cardinal());
@@ -141,11 +162,17 @@ public class ConjuntoTests {
         Conjunto<Integer> conjunto = new Conjunto<Integer>();
 
         conjunto.insertar(5);
+        assertTrue(conjunto.estaBalanceado());
         conjunto.insertar(4);
+        assertTrue(conjunto.estaBalanceado());
         conjunto.insertar(7);
+        assertTrue(conjunto.estaBalanceado());
         conjunto.insertar(6);
+        assertTrue(conjunto.estaBalanceado());
         conjunto.insertar(8);
+        assertTrue(conjunto.estaBalanceado());
         conjunto.eliminar(7);
+        assertTrue(conjunto.estaBalanceado());
 
         assertFalse(conjunto.pertenece(7));
         assertEquals(4, conjunto.cardinal());
@@ -158,11 +185,17 @@ public class ConjuntoTests {
         Conjunto<Integer> conjunto = new Conjunto<Integer>();
 
         conjunto.insertar(5);
+        assertTrue(conjunto.estaBalanceado());
         conjunto.insertar(4);
+        assertTrue(conjunto.estaBalanceado());
         conjunto.insertar(7);
+        assertTrue(conjunto.estaBalanceado());
         conjunto.insertar(6);
+        assertTrue(conjunto.estaBalanceado());
         conjunto.insertar(8);
+        assertTrue(conjunto.estaBalanceado());
         conjunto.eliminar(5);
+        assertTrue(conjunto.estaBalanceado());
 
         assertFalse(conjunto.pertenece(5));
         assertEquals(4, conjunto.cardinal());
@@ -174,17 +207,15 @@ public class ConjuntoTests {
     void eliminar_raiz_con_derecho() {
         Conjunto<Integer> conjunto = new Conjunto<Integer>();
 
-        /*
-         * ___6___
-         * _____8
-         * ____7 9
-         * 
-         */
 
         conjunto.insertar(6);
+        assertTrue(conjunto.estaBalanceado());
         conjunto.insertar(8);
+        assertTrue(conjunto.estaBalanceado());
         conjunto.insertar(9);
+        assertTrue(conjunto.estaBalanceado());
         conjunto.insertar(7);
+        assertTrue(conjunto.estaBalanceado());
 
         conjunto.eliminar(6);
 
@@ -202,17 +233,15 @@ public class ConjuntoTests {
     void eliminar_raiz_con_hijo_izquierdo() {
         Conjunto<Integer> conjunto = new Conjunto<Integer>();
 
-        /*
-         * ___6___
-         * _4
-         * 2 5
-         * 
-         */
 
         conjunto.insertar(6);
+        assertTrue(conjunto.estaBalanceado());
         conjunto.insertar(4);
+        assertTrue(conjunto.estaBalanceado());
         conjunto.insertar(2);
+        assertTrue(conjunto.estaBalanceado());
         conjunto.insertar(5);
+        assertTrue(conjunto.estaBalanceado());
 
         conjunto.eliminar(6);
 
@@ -231,23 +260,28 @@ public class ConjuntoTests {
         Conjunto<Integer> conjunto = new Conjunto<Integer>();
 
         conjunto.insertar(5);
-
+        assertTrue(conjunto.estaBalanceado());
         conjunto.insertar(4);
-
+        assertTrue(conjunto.estaBalanceado());
         conjunto.insertar(20);
-
+        assertTrue(conjunto.estaBalanceado());
         conjunto.insertar(15);
-
+        assertTrue(conjunto.estaBalanceado());
         
         assertEquals(true, conjunto.estaBalanceado());
         conjunto.insertar(12);
 
 
         conjunto.insertar(16);
+        assertTrue(conjunto.estaBalanceado());
         conjunto.insertar(24);
+        assertTrue(conjunto.estaBalanceado());
         conjunto.insertar(22);
+        assertTrue(conjunto.estaBalanceado());
         conjunto.insertar(25);
+        assertTrue(conjunto.estaBalanceado());
         conjunto.eliminar(20);
+        assertTrue(conjunto.estaBalanceado());
 
         assertFalse(conjunto.pertenece(20));
         assertEquals(8, conjunto.cardinal());
@@ -260,18 +294,28 @@ public class ConjuntoTests {
         Conjunto<Integer> conjunto = new Conjunto<Integer>();
 
         conjunto.insertar(5);
+        assertTrue(conjunto.estaBalanceado());
         conjunto.insertar(4);
+        assertTrue(conjunto.estaBalanceado());
         conjunto.insertar(20);
+        assertTrue(conjunto.estaBalanceado());
         conjunto.insertar(15);
+        assertTrue(conjunto.estaBalanceado());
         conjunto.insertar(12);
+        assertTrue(conjunto.estaBalanceado());
         conjunto.insertar(24);
+        assertTrue(conjunto.estaBalanceado());
         conjunto.insertar(22);
+        assertTrue(conjunto.estaBalanceado());
         conjunto.insertar(25);
+        assertTrue(conjunto.estaBalanceado());
         conjunto.insertar(19);
+        assertTrue(conjunto.estaBalanceado());
         conjunto.insertar(21);
+        assertTrue(conjunto.estaBalanceado());
         conjunto.eliminar(20);
+        assertTrue(conjunto.estaBalanceado());
 
-        assertEquals(true, conjunto.estaBalanceado());
         assertFalse(conjunto.pertenece(20));
         assertEquals(9, conjunto.cardinal());
         assertEquals(4, conjunto.minimo());
@@ -289,21 +333,31 @@ public class ConjuntoTests {
         }
 
         assertEquals(conjunto.cardinal(), lista_ordenada.length);
+        assertTrue(conjunto.estaBalanceado());
 
     }
 
     @Test
-    void elementos() {
+    void volcarElementos() {
         Conjunto<Integer> conjunto = new Conjunto<>();
         conjunto.insertar(5);
+        assertTrue(conjunto.estaBalanceado());
         conjunto.insertar(4);
+        assertTrue(conjunto.estaBalanceado());
         conjunto.insertar(20);
+        assertTrue(conjunto.estaBalanceado());
         conjunto.insertar(15);
+        assertTrue(conjunto.estaBalanceado());
         conjunto.insertar(12);
+        assertTrue(conjunto.estaBalanceado());
         conjunto.insertar(16);
+        assertTrue(conjunto.estaBalanceado());
         conjunto.insertar(24);
+        assertTrue(conjunto.estaBalanceado());
         conjunto.insertar(22);
+        assertTrue(conjunto.estaBalanceado());
         conjunto.insertar(25);
+        assertTrue(conjunto.estaBalanceado());
 
         Integer[] elems = new Integer[9];
         conjunto.volcarElementos(elems);
@@ -313,35 +367,6 @@ public class ConjuntoTests {
             assertEquals(elems_esperados[i], elems[i]);
         }
     }
-
-    /* 
-    @Test
-    void siguiente_inorder() {
-        Conjunto<Integer> conjunto = new Conjunto<Integer>();
-
-        conjunto.insertar(5);
-        conjunto.insertar(4);
-        conjunto.insertar(20);
-        conjunto.insertar(15);
-        conjunto.insertar(12);
-        conjunto.insertar(16);
-        conjunto.insertar(24);
-        conjunto.insertar(22);
-        conjunto.insertar(25);
-
-        Iterador<Integer> iterador = conjunto.iterador();
-        assertEquals(4, iterador.siguiente());
-        assertEquals(5, iterador.siguiente());
-        assertEquals(12, iterador.siguiente());
-        assertEquals(15, iterador.siguiente());
-        assertEquals(16, iterador.siguiente());
-        assertEquals(20, iterador.siguiente());
-        assertEquals(22, iterador.siguiente());
-        assertEquals(24, iterador.siguiente());
-        assertEquals(25, iterador.siguiente());
-
-    }
-        */
 
     @Test
     void conjunto_vacio_toString() {
@@ -394,6 +419,7 @@ public class ConjuntoTests {
             assertEquals(false, conjunto.pertenece(k));
             conjunto.insertar(k);
             assertEquals(true, conjunto.pertenece(k));
+            assertTrue(conjunto.estaBalanceado());
         }
         assertEquals(NCLAVES, conjunto.cardinal());
         assertEquals(true, conjunto.estaBalanceado());
@@ -406,6 +432,7 @@ public class ConjuntoTests {
 
             assertTrue(conjunto.pertenece(k));
             assertEquals(NCLAVES, conjunto.cardinal());
+            assertTrue(conjunto.estaBalanceado());
         }
 
         assertEquals(true, conjunto.estaBalanceado());
@@ -418,6 +445,7 @@ public class ConjuntoTests {
 
                 assertFalse(conjunto.pertenece(k));
             }
+            assertTrue(conjunto.estaBalanceado());
         }
         assertEquals(NCLAVES / 2, conjunto.cardinal());
         assertEquals(true, conjunto.estaBalanceado());
@@ -433,6 +461,7 @@ public class ConjuntoTests {
 
                 assertFalse(conjunto.pertenece(k));
             }
+            assertTrue(conjunto.estaBalanceado());
         }
         assertEquals(0, conjunto.cardinal());
         assertEquals(true, conjunto.estaBalanceado());
@@ -440,6 +469,7 @@ public class ConjuntoTests {
         for (Integer i = 0; i < NCLAVES; i++) {
             Integer k = clave(i);
             assertFalse(conjunto.pertenece(k));
+            assertTrue(conjunto.estaBalanceado());
         }
     }
 }

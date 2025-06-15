@@ -19,11 +19,12 @@ public class ColaPrioridadTests
         Integer[] elemsOrdenados = {1999, 800, 727, 20, 19, 6, 4, 3, 1, -6, -399};
         ColaPrioridad<Integer> cola = new ColaPrioridad<Integer>(elems);
         
-        for (int i = 0; i < elemsOrdenados.length -1; i++)
+        for (int i = 0; i < elemsOrdenados.length; i++)
         {
-            
+            assertFalse(cola.estaVacia());
             assertEquals(elemsOrdenados[i], cola.desencolar());
         }
+        assertTrue(cola.estaVacia());
 
 
     }
@@ -41,7 +42,10 @@ public class ColaPrioridadTests
 
         for (int i = 0; i < elems.length; i++)
         {
+            assertFalse(cola.estaVacia());
             assertEquals(elems.length-1-i, cola.desencolar());
         }
+
+        assertTrue(cola.estaVacia());
     }
 }

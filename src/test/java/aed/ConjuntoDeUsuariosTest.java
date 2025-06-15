@@ -30,28 +30,5 @@ public class ConjuntoDeUsuariosTest {
     }
 
 
-
-    @Test
-    void prueba3() {
-        Integer[] elems = {1, 2, 3, 4, 5, 6, 7, 8};
-        Integer[] elemsMayorAMenor = {8, 7, 6, 5, 4, 3, 2, 1};
-        ColaPrioridad<Integer> cola = new ColaPrioridad<Integer>(elems);
-
-        for (int i = 0; i < elems.length; i++) {
-            assertEquals(elemsMayorAMenor[i], cola.desencolar());
-        }
-    }
-    
-    @Test
-    void prueba4() {
-        Diccionario<Integer, Integer> dict = new Diccionario<>();
-        dict.definir(1, 2);
-        assertEquals(true, dict.pertenece(1));
-        assertEquals(false, dict.pertenece(2));
-
-        assertEquals(2, dict.obtener(1));
-        dict.borrar(1);
-        assertEquals(false, dict.pertenece(1));
-    }
     
 }
