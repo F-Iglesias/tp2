@@ -51,6 +51,7 @@ public class Berretacoin {
 
     public void hackearTx() // O(log n_b + log P)
     {
+        if (ultimoBloque.estaVacio()) { return; } // Para que no tire error en caso de hackear un bloque vacío
         Transaccion t = ultimoBloque.borrarTransaccionMaxima(); // log n_b
         usuarios.revertirTransaccion(t); // log P
     }
