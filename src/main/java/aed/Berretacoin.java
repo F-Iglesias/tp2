@@ -5,13 +5,14 @@ public class Berretacoin {
     ConjuntoDeUsuarios usuarios;
     Bloque ultimoBloque;
 
-    public Berretacoin(int n_usuarios){
-        usuarios = new ConjuntoDeUsuarios(n_usuarios);
-        ultimoBloque = new Bloque();
+    public Berretacoin(int n_usuarios) // O(P)
+    {
+        usuarios = new ConjuntoDeUsuarios(n_usuarios); // O(P)
+        ultimoBloque = new Bloque(); // O(1)
     }
 
-    public void agregarBloque(Transaccion[] transacciones){
-        
+    public void agregarBloque(Transaccion[] transacciones) // O(n_b log P)
+    {
         // Tenemos n_b iteraciones de costo O(log P) así que evaluar este bucle tiene complejidad temporal O(n_b log P)
         for (Transaccion t : transacciones)
         {

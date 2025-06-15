@@ -24,19 +24,20 @@ public class Usuario implements Comparable<Usuario> {
          * De este modo, el usuario más grande será el máximo tenedor que deberá devolver la operación maximoTenedor.
          * Es fácil ver que esto define un orden total.
          */
-        if (saldo == otro.saldo && id == otro.id) { return 0; }
-        else if (saldo > otro.saldo || (saldo == otro.saldo && id < otro.id)) { return 1; }
-        return -1;
+        if (saldo == otro.saldo && id == otro.id) { return 0; } // O(1)
+        else if (saldo > otro.saldo || (saldo == otro.saldo && id < otro.id)) { return 1; } // O(1)
+        return -1; // O(1)
     }
 
     @Override
     public boolean equals(Object otro) // O(1)
     {
-        if (otro == null || otro.getClass() != this.getClass()) {
+        if (otro == null || otro.getClass() != this.getClass()) // O(1)
+        {
             return false;
         }
-        Usuario otroUsuario = (Usuario) otro;
-        return this.id == otroUsuario.id && this.saldo == otroUsuario.saldo;
+        Usuario otroUsuario = (Usuario) otro; // O(1)
+        return this.id == otroUsuario.id && this.saldo == otroUsuario.saldo; // O(1)
     }
 
     public int id() // O(1)
@@ -49,6 +50,7 @@ public class Usuario implements Comparable<Usuario> {
         return saldo;
     }
 
+    // Para testing
     public String toString() {
         String res = "(id: " + id + ", saldo: " + saldo + ")";
         return res; 

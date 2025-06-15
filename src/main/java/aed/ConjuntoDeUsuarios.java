@@ -4,9 +4,8 @@ public class ConjuntoDeUsuarios {
     
     private Usuario maximoTenedor; // Dentro de todos los usuarios con saldo máximo, es el que tiene la menor id.
     
-    private Conjunto<Usuario> usuarios;  
+    private Conjunto<Usuario> usuarios; // Conjunto con todos los usuarios implementado sobre un arbol AVL  
     private int[] saldos; // array que contiene todos los saldos ordenados por id.
-
     
 
     public ConjuntoDeUsuarios(int n_usuarios) // O(P)
@@ -17,8 +16,8 @@ public class ConjuntoDeUsuarios {
         
         for (int i = 0; i < n_usuarios; i++) // P operaciones O(1), el bucle tiene costo O(P)
         { 
-            saldos[i] = 0;
-            array_usuarios[i] = new Usuario(n_usuarios - i, 0); 
+            saldos[i] = 0; // O(1)
+            array_usuarios[i] = new Usuario(n_usuarios - i, 0); // O(1)
         }
 
         // La lista Usuario(n_usuarios, 0), ..., Usuario(1, 0) está ordenada así que podemos construir usuarios en tiempo lineal
@@ -42,8 +41,8 @@ public class ConjuntoDeUsuarios {
     public void procesarTransaccion(Transaccion t) // O(log P) 
     {
         // La id 0 en el comprador representa transacciones de creación y no es un usuario.
-        if (t.id_comprador() != 0) { agregarSaldo(t.id_comprador(), -t.monto()); }
-        agregarSaldo(t.id_vendedor(), t.monto());
+        if (t.id_comprador() != 0) { agregarSaldo(t.id_comprador(), -t.monto()); } // O(log P)
+        agregarSaldo(t.id_vendedor(), t.monto()); // O(log P)
     }
 
     /* 
@@ -51,16 +50,18 @@ public class ConjuntoDeUsuarios {
      */
     public void revertirTransaccion(Transaccion t) // O(log P)
     {
-        if (t.id_comprador() != 0) { agregarSaldo(t.id_comprador(), t.monto());}
-        agregarSaldo(t.id_vendedor(), -t.monto());
+        if (t.id_comprador() != 0) { agregarSaldo(t.id_comprador(), t.monto());} // O(log P)
+        agregarSaldo(t.id_vendedor(), -t.monto()); // O(log P)
     }
 
-    public Usuario maximoTenedor() {
-        return new Usuario(maximoTenedor); // Para evitar aliasing
+    public Usuario maximoTenedor() // O(1) 
+    {
+        return new Usuario(maximoTenedor); // O(1). 
     }
 
 
-    public int saldo(int id) {
-        return saldos[id-1];
+    public int saldo(int id) // O(1) 
+    {
+        return saldos[id-1]; // O(1)
     }
 }

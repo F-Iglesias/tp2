@@ -7,14 +7,15 @@ public class Transaccion implements Comparable<Transaccion> {
     private int monto;
 
 
-    public Transaccion(Transaccion t)
+    public Transaccion(Transaccion t) // O(1)
     {
         id = t.id;
         id_comprador = t.id_comprador;
         id_vendedor = t.id_vendedor;
         monto = t.monto;
     }
-    public Transaccion(int id, int id_comprador, int id_vendedor, int monto) {
+    public Transaccion(int id, int id_comprador, int id_vendedor, int monto) // O(1)
+    {
         this.id = id;
         this.id_comprador = id_comprador;
         this.id_vendedor = id_vendedor;
@@ -43,19 +44,22 @@ public class Transaccion implements Comparable<Transaccion> {
         return this.id == otroT.id && this.id_comprador == otroT.id_comprador && this.id_vendedor == otroT.id_vendedor && this.monto == otroT.monto;
     }
 
-    public int monto() {
+    public int monto() // O(1)
+    {
         return monto;
     }
 
-    public int id_comprador() {
+    public int id_comprador() // O(1)
+     {
         return id_comprador;
     }
     
-    public int id_vendedor() {
+    public int id_vendedor() // O(1)
+    {
         return id_vendedor;
     }
 
-    public int id()
+    public int id() // O(1)
     {
         return id;
     }
