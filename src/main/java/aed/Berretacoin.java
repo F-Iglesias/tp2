@@ -11,12 +11,16 @@ public class Berretacoin {
         ultimoBloque = new Bloque(); // O(1)
     }
 
+
     public void agregarBloque(Transaccion[] transacciones) // O(n_b log P)
     {
-        // Tenemos n_b iteraciones de costo O(log P) así que evaluar este bucle tiene complejidad temporal O(n_b log P)
+        /* Tenemos, en el peor caso, n_b iteraciones de costo O(log P), así que evaluar este bucle
+         * tiene complejidad temporal O(n_b log P)
+         */
         for (Transaccion t : transacciones)
         {
-            usuarios.procesarTransaccion(t); // O(log P)
+            // Descartamos toda transacción en la que el comprador (si es usuario) gasta más de lo que tiene
+            if (usuarios.esTransaccionValida(t)) { usuarios.procesarTransaccion(t); } // O(log P)
         }
 
         ultimoBloque = new Bloque(transacciones); // O(n_b)

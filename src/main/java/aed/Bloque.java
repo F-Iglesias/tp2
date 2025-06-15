@@ -19,6 +19,7 @@ public class Bloque {
     // Dada una lista de transacciones, ordenadas por id, construye un bloque en tiempo lineal
     public Bloque(Transaccion[] ts) // O(n)
     {
+        
         Tupla<Integer, Transaccion>[] array_tuplas = (Tupla<Integer, Transaccion>[]) new Tupla[ts.length]; // O(n)
 
         Transaccion[] copia_ts = new Transaccion[ts.length]; // O(n)
