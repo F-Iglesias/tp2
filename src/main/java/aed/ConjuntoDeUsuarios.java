@@ -37,7 +37,7 @@ public class ConjuntoDeUsuarios {
     // De esta forma, las transacciones de creación son siempre válidas.
     public boolean esTransaccionValida(Transaccion t) // O(1)
     {
-        return !esUsuario(t.id_comprador()) || saldo(t.id_comprador()) >= t.monto();
+        return (!esUsuario(t.id_comprador()) || saldo(t.id_comprador()) >= t.monto()) && t.monto() > 0 && esUsuario(t.id_vendedor());
     }
 
     // Le agrega un monto específico a un usuario. No le preocupa si el usuario termina con saldo negativo.
